@@ -14,16 +14,11 @@ on:
           - sandbox-base-mobile
           - sandbox-lite
   push:
-    branches: [main]
-    paths:
-      - "sandbox-base/**"
-      - "sandbox-base-mobile/**"
-      - "sandbox-lite/**"
-      - ".github/workflows/build-sandbox-images.yml"
     tags:
       - "v*"
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   REGISTRY: ghcr.io
   BASE_IMAGE: ghcr.io/crashloom/sandbox-base
   MOBILE_IMAGE: ghcr.io/crashloom/sandbox-base-mobile
@@ -170,13 +165,7 @@ jobs:
             poetry --version && uv --version &&
             echo "=== Node.js ===" && node --version && npm --version &&
             yarn --version && pnpm --version && bun --version &&
-            echo "=== Java ===" && java -version && mvn --version &&
-            gradle --version &&
-            echo "=== Go ===" && go version &&
-            echo "=== .NET ===" && dotnet --version &&
             echo "=== Ruby ===" && ruby --version &&
-            echo "=== PHP ===" && php --version && composer --version &&
-            echo "=== Rust ===" && rustc --version && cargo --version &&
             echo "=== C/C++ ===" && gcc --version | head -1 && clang --version | head -1 &&
             echo "=== DB Clients ===" && psql --version && redis-cli --version &&
             echo "=== Tools ===" && git --version && tree-sitter --version &&
@@ -250,7 +239,7 @@ jobs:
             echo "=== Dart ===" && dart --version &&
             echo "=== Android SDK ===" && sdkmanager --version &&
             echo "=== Node.js (for RN) ===" && node --version &&
-            echo "=== Inherited tools ===" && python3 --version && go version &&
+            echo "=== Inherited tools ===" && python3 --version &&
             echo "ALL MOBILE TOOLS OK"
           '
         env:

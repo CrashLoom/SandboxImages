@@ -1,0 +1,35 @@
+name: Build failure
+description: Report a broken image build or tool verification failure.
+title: "fix: build failure in <image>"
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share the failing build details.
+  - type: dropdown
+    id: image
+    attributes:
+      label: Image
+      options:
+        - sandbox-lite
+        - sandbox-base
+        - sandbox-base-mobile
+    validations:
+      required: true
+  - type: textarea
+    id: error_log
+    attributes:
+      label: Error log
+      description: Paste the relevant build or verification error output.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any relevant details (commit SHA, workflow run link, etc.).
+    validations:
+      required: false
