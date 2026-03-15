@@ -1,0 +1,60 @@
+name: Toolchain request
+description: Request adding or updating a tool/SDK in a sandbox image.
+title: "feat: add/update <tool> in <image>"
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe what tool or SDK you need in the sandbox.
+  - type: dropdown
+    id: image
+    attributes:
+      label: Target image
+      options:
+        - sandbox-lite
+        - sandbox-base
+        - sandbox-base-mobile
+    validations:
+      required: true
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Change type
+      options:
+        - Add new tool
+        - Update existing tool version
+        - Remove deprecated tool
+    validations:
+      required: true
+  - type: input
+    id: tool_name
+    attributes:
+      label: Tool/SDK name
+      placeholder: e.g. Kotlin, Swift, Zig
+    validations:
+      required: true
+  - type: input
+    id: tool_version
+    attributes:
+      label: Desired version
+      placeholder: e.g. latest, 2.1.0
+    validations:
+      required: false
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why is this tool needed for crash fixing?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked that the tool is not already included in the target image.
+          required: true
+        - label: I can open a PR for this change.
+          required: false

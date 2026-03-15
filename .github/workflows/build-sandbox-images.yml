@@ -14,16 +14,11 @@ on:
           - sandbox-base-mobile
           - sandbox-lite
   push:
-    branches: [main]
-    paths:
-      - "sandbox-base/**"
-      - "sandbox-base-mobile/**"
-      - "sandbox-lite/**"
-      - ".github/workflows/build-sandbox-images.yml"
     tags:
       - "v*"
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   REGISTRY: ghcr.io
   BASE_IMAGE: ghcr.io/crashloom/sandbox-base
   MOBILE_IMAGE: ghcr.io/crashloom/sandbox-base-mobile
