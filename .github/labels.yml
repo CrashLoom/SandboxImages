@@ -14,7 +14,7 @@
   color: 0e8a16
   description: Changes to sandbox-base image
 
-- name: sandbox-mobile
+- name: sandbox-base-mobile
   color: e4e669
   description: Changes to sandbox-base-mobile image
 
