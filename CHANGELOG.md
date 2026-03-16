@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/CrashLoom/SandboxImages/compare/v1.0.0...v1.1.0) (2026-03-16)
+
+
+### Features
+
+* Add language pack of tree sitter ([#4](https://github.com/CrashLoom/SandboxImages/issues/4)) ([97b3d4d](https://github.com/CrashLoom/SandboxImages/commit/97b3d4d140a8cb4231ee1e8aaf782db59aa9a92f))
+
 ## 1.0.0 (2026-03-15)
 
 
