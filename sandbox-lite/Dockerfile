@@ -1,11 +1,3 @@
-FROM rust:slim AS builder
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libclang-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && cargo install tree-sitter-cli \
-    && strip /usr/local/cargo/bin/tree-sitter
-
 FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -26,18 +18,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # =============================================================================
-# Layer 3: Python 3 + pip + tree-sitter Python bindings
+# Layer 3: Python 3 + pip + tree-sitter Python bindings + language grammars
 # =============================================================================
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 python3-pip \
     && rm -rf /var/lib/apt/lists/* \
     && rm -f /usr/lib/python3.*/EXTERNALLY-MANAGED \
-    && pip3 install --no-cache-dir tree-sitter
-
-# =============================================================================
-# Layer 4: tree-sitter CLI (built in stage 1)
-# =============================================================================
-COPY --from=builder /usr/local/cargo/bin/tree-sitter /usr/local/bin/tree-sitter
+    && pip3 install --no-cache-dir tree-sitter tree-sitter-language-pack
 
 # =============================================================================
 # Layer 5: Hardening — strip setuid/setgid, clear caches
