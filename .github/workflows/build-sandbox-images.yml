@@ -96,8 +96,8 @@ jobs:
           docker run --rm "$LITE_IMAGE:$SHORT_SHA" bash -c '
             echo "=== Git ===" && git --version &&
             echo "=== Python ===" && python3 --version &&
-            echo "=== tree-sitter CLI ===" && tree-sitter --version &&
             echo "=== tree-sitter Python ===" && python3 -c "from tree_sitter import Language; print(\"OK\")" &&
+            echo "=== tree-sitter Language Pack ===" && python3 -c "from tree_sitter_language_pack import get_parser; print(\"OK\")" &&
             echo "ALL LITE TOOLS OK"
           '
         env:
@@ -168,7 +168,7 @@ jobs:
             echo "=== Ruby ===" && ruby --version &&
             echo "=== C/C++ ===" && gcc --version | head -1 && clang --version | head -1 &&
             echo "=== DB Clients ===" && psql --version && redis-cli --version &&
-            echo "=== Tools ===" && git --version && tree-sitter --version &&
+            echo "=== Tools ===" && git --version &&
             echo "=== Version Managers ===" && pyenv --version &&
             . /opt/nvm/nvm.sh && nvm --version &&
             /opt/rbenv/bin/rbenv --version &&
